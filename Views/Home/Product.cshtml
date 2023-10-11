@@ -1,0 +1,40 @@
+﻿@model ShoppingCartItem
+<section class="product-detail">
+    <table width="100%">
+        <tr>
+            <td style="width:400px;">
+                <img src="/@Model.Product.PictureUri" />
+            </td>
+            <td style="vertical-align:top">
+                <h2>@Model.Product.Name</h2>
+                <p>Price: <b>$@Model.Product.Price</b></p>
+                <div>
+                    <table>
+                        <tr>
+                            <td>Quantity: </td>
+                            <td><input type="number" value="@Model.Qty" name="Qty" class="form-control" style="width:75px;" onchange="updateQty($(this).val(),@Model.Product.Price)" min="1" onkeypress="return false"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="margin-top:10px;">
+                    Total: <b class="total">$@(Model.Product.Price*Model.Qty)</b>
+                </div>
+                <div style="margin:15px 0 0px;">
+                    <form asp-action="Index">
+                        <button class="esh-basket-checkout" style="width:276px;">[Continue Shopping]</button>
+                    </form>
+                </div>
+                <div style="display:flex">
+                    <form asp-action="Product">
+                        <input type="hidden" name="ProductId" value="@Model.Product.Id"/>
+                        <input type="hidden" name="Qty" value="@Model.Qty" id="qtyupdate"/>
+                        <button class="esh-basket-checkout">[Update]</button>
+                    </form>
+                    <form asp-action="CheckOut" method="post">
+                        <button class="esh-basket-checkout">[Checkout]</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+</section>

@@ -1,8 +1,65 @@
-﻿@{
+﻿@using mvcprojectfinal.Models.ViewModels;
+@model IEnumerable<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="esh-catalog-filters">
+    <div class="container">
+        <form method="get">
+            <label class="esh-catalog-label" data-title="brand">
+                <select class="esh-catalog-filter" id="CatalogModel_BrandFilterApplied" name="CatalogModel.BrandFilterApplied">
+                    <option>All</option>
+                    <option value="2">.NET</option>
+                    <option value="1">Azure</option>
+                    <option value="5">Other</option>
+                    <option value="4">SQL Server</option>
+                    <option value="3">Visual Studio</option>
+                </select>
+            </label>
+            <label class="esh-catalog-label" data-title="type">
+                <select class="esh-catalog-filter" id="CatalogModel_TypesFilterApplied" name="CatalogModel.TypesFilterApplied">
+                    <option>All</option>
+                    <option value="1">Mug</option>
+                    <option value="3">Sheet</option>
+                    <option value="2">T-Shirt</option>
+                    <option value="4">USB Memory Stick</option>
+                </select>
+            </label>
+            <input class="esh-catalog-send" type="image" src="/images/arrow-right.svg">
+        </form>
+    </div>
+</section>
+
+<section class="esh-pager">
+    @{
+        PagerViewModel pagerModel = new PagerViewModel();
+        pagerModel.TotalPage = (int)ViewData["TotalProduct"];
+        pagerModel.Controller  = "Home";
+        pagerModel.Action = "Index";
+        await Html.RenderPartialAsync("Pager", pagerModel);
+     }
+</section>
+
+<section class="esh-product-list">
+    @foreach (Product p in Model)
+{
+            <div class="esh-catalog-item">
+                <div>
+                    <img src="/@p.PictureUri"/>
+                </div>
+                <div>
+                    <form asp-action="Product">
+                        <input type="hidden" name="ProductId" value="@p.Id"/>
+                        <button class="esh-catalog-button">[ADD TO BASKET]</button>
+                    </form>
+                </div>
+                <div class="esh-catalog-name">
+                    @p.Name
+                </div>
+                <div class="esh-catalog-price">
+                    @p.Price
+                </div>
+            </div>
+}
+</section>

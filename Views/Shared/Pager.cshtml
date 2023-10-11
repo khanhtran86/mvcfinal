@@ -1,0 +1,28 @@
+﻿@using mvcprojectfinal.Models.ViewModels;
+@model PagerViewModel;
+@inject IHttpContextAccessor contextAccessor;
+@{
+    string queryPage = contextAccessor.HttpContext.Request.Query["page"];
+    int currentPage = 1;
+    if(!string.IsNullOrEmpty(queryPage))
+        int.TryParse(queryPage, out currentPage);
+}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPage; i++)
+        {
+            <li class="page-item @(i==currentPage?"active":"")"><a class="page-link" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-page="@i">@i</a></li>
+        }
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -5,32 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - mvcprojectfinal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/master.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/mvcprojectfinal.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">mvcprojectfinal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header class="esh-app-header">
+        <div class="container">
+            <article class="row">
+                <section class="col-lg-7 col-md-6 col-xs-12">
+                    <a href="/">
+                        <img src="/images/brand.png" alt="eShop On Web">
+                    </a>
+                </section>
+                <section class="col-lg-4 col-md-5 col-xs-12">
+                    <div class="esh-identity">
+                        <section class="esh-identity-section">
+                            <div class="esh-identity-item">
+
+                                <a class="esh-identity-name esh-identity-name--upper" href="/Identity/Account/Login">
+                                    Login
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+                <section class="col-lg-1 col-xs-12">
+
+
+                    <a class="esh-basketstatus" href="/Basket">
+                        <div class="esh-basketstatus-image">
+                            <img src="/images/cart.png">
+                        </div>
+                        <div class="esh-basketstatus-badge">
+                            0
+                        </div>
+                    </a>
+
+                </section>
+
+            </article>
+        </div>
     </header>
     <div class="container">
+        <section class="esh-catalog-hero">
+            <div class="container">
+                <img class="esh-catalog-title" src="/images/main_banner_text.png">
+            </div>
+        </section>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -43,7 +64,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Cart.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
